@@ -125,6 +125,10 @@
                .then(([geoJson, sldText]) => {
                   const SLDStyler = new L.SLDStyler(sldText);
                   const geojsonLayer = L.geoJson(geoJson, {
+                    onEachFeature: function (feature, layer){
+                      layer.bindpopup(popupContent);
+                      layer.bindTooltip(feature.properties.COUNTY, {permanent: true, direction: 'right'}).openTooltip();
+                    },
                      style: SLDStyler.getStyleFunction(),
                      pointToLayer: SLDStyler.getPointToLayerFunction()
                   }).addTo(map);
