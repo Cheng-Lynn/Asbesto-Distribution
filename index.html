@@ -127,7 +127,7 @@
                   const geojsonLayer = L.geoJson(geoJson, {
                      style: SLDStyler.getStyleFunction(),
                      pointToLayer: SLDStyler.getPointToLayerFunction()
-                    .bindTooltip(feature.properties.COUNTY);
+                    .bindTooltip(feature.properties.COUNTY),
                     }).bindPopup(function (layer) {
    return layer.feature.properties.popupContent;
                   }).addTo(map);
