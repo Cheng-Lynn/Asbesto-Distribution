@@ -145,7 +145,7 @@
                   const SLDStyler = new L.SLDStyler(sldText);
                   const geojsonLayer = L.geoJson(geoJson, {
                     onEachFeature: pop_Asbestos_Distr,
-                    function (feature, layer){
+                     onEachFeature: function (feature, layer){
                       layer.bindTooltip(feature.properties.COUNTY, {permanent: true, direction: 'right'}).openTooltip();
                     },
                      style: SLDStyler.getStyleFunction(),
