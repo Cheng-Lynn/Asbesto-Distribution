@@ -28,6 +28,26 @@
         z-index: 100;
       }
     </style>
+    
+    <style>
+  .labelstyle {
+      all: revert;
+    color: green;
+    font-size:14px;
+    font-weight: 700;
+    Color: none;
+    Opacity: 0;
+    background-color: none;
+    border-color: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+    margin: 0px;
+    cursor: none;
+    direction: 'center';
+    fill: false;
+}
+</style>
   </head>
   
   <body>
@@ -146,7 +166,7 @@
                   const geojsonLayer = L.geoJson(geoJson, {
                     onEachFeature: pop_Asbestos_Distr,
                      onEachFeature: function (feature, layer){
-                      layer.bindTooltip(feature.properties.COUNTY, {permanent: true, direction: 'right'}).openTooltip();
+                      layer.bindTooltip(feature.properties.COUNTY, {permanent: true, direction: 'center', backround-color: 'transparent', opacity: 5, classname:'labelstyle'}).openTooltip();
                     },
                      style: SLDStyler.getStyleFunction(),
                      pointToLayer: SLDStyler.getPointToLayerFunction()
