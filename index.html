@@ -65,6 +65,25 @@
 
 
 <script>
+  
+  var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 5
+              });
+            }
+            highlightLayer.openPopup();
+        }
+
+  
   var map = L.map("map").setView([-0.9, 39],6.4);
 
   var osm = L.tileLayer('https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.jpg?key=iWG4UVE2Fx4REa9qTLto', { 
