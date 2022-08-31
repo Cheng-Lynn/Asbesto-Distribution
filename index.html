@@ -164,9 +164,7 @@
                .then(([geoJson, sldText]) => {
                   const SLDStyler = new L.SLDStyler(sldText);
                   const geojsonLayer = L.geoJson(geoJson, {
-                     onEachFeature: (pop_Asbestos_Distr, function (feature, layer){
-                      layer.bindTooltip(feature.properties.COUNTY, {permanent: true, direction: 'right', position: 'center', opacity: 5, classname:'labelstyle'}).openTooltip();
-                     }),
+                     onEachFeature: pop_Asbestos_Distr,
                      style: SLDStyler.getStyleFunction(),
                      pointToLayer: SLDStyler.getPointToLayerFunction()
                   }).addTo(map);
