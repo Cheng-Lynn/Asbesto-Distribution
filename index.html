@@ -132,19 +132,6 @@
                });
          })
       });
-    
-     var osmGeocoder = new L.Control.Geocoder({
-            collapsed: true,
-            position: 'topleft',
-            target: 'abc',
-            text: 'Search',
-            title: 'Testing'
-        }).addTo(map);
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .className += ' fa fa-search';
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .title += 'Search';
-  
   //endelevu watermark
  L.Control.Watermark=L.Control.extend({
             onAdd: function(map){
@@ -163,6 +150,20 @@
                 position:'bottomright',
                 background:'#4cd137',
             }).addTo(map);  
+    
+     var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            target: 'abc',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search';
+  
+  
     </script>
   </body>
 </html>
