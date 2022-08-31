@@ -164,7 +164,9 @@
                .then(([geoJson, sldText]) => {
                   const SLDStyler = new L.SLDStyler(sldText);
                   const geojsonLayer = L.geoJson(geoJson, {
-                     onEachFeature: pop_Asbestos_Distr,
+                     onEachFeature: (pop_Asbestos_Distr, function (feature, layer){
+                      layer.bindTooltip(feature.properties.COUNTY, {permanent: true, direction: 'right', position: 'center', opacity: 5, classname:'labelstyle'}).openTooltip();
+                     }),
                      style: SLDStyler.getStyleFunction(),
                      pointToLayer: SLDStyler.getPointToLayerFunction()
                   }).addTo(map);
@@ -172,6 +174,55 @@
                })
          })
       });
+  
+  const legend = L.control.Legend({
+            position: "topright",
+            collapsed: false,
+            title:'No. of Asbestos',
+            symbolWidth: 24,
+            opacity: 1,
+            column: 1,
+            legends: [{
+                label: "Rectangle",
+                type: "rectangle",
+                color: "#4a4a4a",
+                fillColor: "#66a71e",
+                weight: 2
+            }, {
+                label: "Rectangle",
+                type: "rectangle",
+                color: "#4a4a4a",
+                fillColor: "#b4ba2a",
+                weight: 2
+            }, {
+                label: "Rectangle",
+                type: "rectangle",
+                color: "#4a4a4a",
+                fillColor: "#d8cb39",
+                weight: 2
+            }, {
+                label: "Rectangle",
+                type: "rectangle",
+                color: "#4a4a4a",
+                fillColor: "#c34a6e",
+                weight: 2
+            },{
+                label: "Rectangle",
+                type: "rectangle",
+                color: "#4a4a4a",
+                fillColor: "#88282f",
+                weight: 2
+            }]
+        })
+            .addTo(map);
+  
+ //insert scale      
+  L.control.scale({
+            metric:true,
+            imperial:false,
+            position:'topleft'
+        }).addTo (map);
+  
   //endelevu watermark
  L.Control.Watermark=L.Control.extend({
             onAdd: function(map){
