@@ -24,6 +24,10 @@
             <Fill>
               <CssParameter name="fill">#66a71e</CssParameter>
             </Fill>
+            <Stroke>
+              <CssParameter name="stroke">#4a4a4a</CssParameter>
+              <CssParameter name="stroke-width">1</CssParameter>
+            </Stroke>
           </PolygonSymbolizer>
         </Rule>
         <Rule>
@@ -44,6 +48,10 @@
             <Fill>
               <CssParameter name="fill">#b4ba2a</CssParameter>
             </Fill>
+            <Stroke>
+              <CssParameter name="stroke">#4a4a4a</CssParameter>
+              <CssParameter name="stroke-width">1</CssParameter>
+            </Stroke>
           </PolygonSymbolizer>
         </Rule>
         <Rule>
@@ -62,8 +70,12 @@
           </Filter>
           <PolygonSymbolizer>
             <Fill>
-              <CssParameter name="fill">#eadd4a</CssParameter>
+              <CssParameter name="fill">#d8cb39</CssParameter>
             </Fill>
+            <Stroke>
+              <CssParameter name="stroke">#4a4a4a</CssParameter>
+              <CssParameter name="stroke-width">1</CssParameter>
+            </Stroke>
           </PolygonSymbolizer>
         </Rule>
         <Rule>
@@ -82,8 +94,12 @@
           </Filter>
           <PolygonSymbolizer>
             <Fill>
-              <CssParameter name="fill">#cb2c5b</CssParameter>
+              <CssParameter name="fill">#c34a6e</CssParameter>
             </Fill>
+            <Stroke>
+              <CssParameter name="stroke">#4a4a4a</CssParameter>
+              <CssParameter name="stroke-width">1</CssParameter>
+            </Stroke>
           </PolygonSymbolizer>
         </Rule>
         <Rule>
@@ -96,8 +112,13 @@
           </Filter>
           <PolygonSymbolizer>
             <Fill>
-              <CssParameter name="fill">#86151d</CssParameter>
+              <CssParameter name="fill">#88282f</CssParameter>
             </Fill>
+            <Stroke>
+              <CssParameter name="stroke">#4a4a4a</CssParameter>
+              <CssParameter name="stroke-width">1</CssParameter>
+              <CssParameter name="stroke-dasharray"/>
+            </Stroke>
           </PolygonSymbolizer>
           <PolygonSymbolizer>
             <Fill>
