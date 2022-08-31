@@ -127,6 +127,8 @@
                   const geojsonLayer = L.geoJson(geoJson, {
                      style: SLDStyler.getStyleFunction(),
                      pointToLayer: SLDStyler.getPointToLayerFunction()
+                    }).bindPopup(function (layer) {
+   return layer.feature.properties.description;
                   }).addTo(map);
                   map.fitBounds(geojsonLayer.getBounds());
                });
