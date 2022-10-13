@@ -3,14 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Asbestos Prevalence in Kenya" content="Asbestos material poses serious health risks upon exposure..."/>
 
     <!-- leaflet css link  -->
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     />
-
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/leaflet.legend.css" />
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/L.Control.Locate.min.css">
+    <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     
      <!--bootstrap css-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" 
@@ -26,10 +34,31 @@
       }
       #map {
         width: 100%;
-        height: 100vh;
+        height: calc(100vh - 50px);
         z-index: 100;
       }
     </style>
+    <style>
+      .button{
+          padding: 2px 4px 2px 4px;
+          background-color: rgb(13, 155, 55);
+          float: right;
+          border: none;
+          border-radius: 4px;
+          color: #fff;
+      }
+      .open{
+          display: none;
+      }
+      .open-btn{
+          width: 100%;
+          background-color: rgb(109, 222, 136);
+          padding-top: 2px;
+          padding-bottom: 2px;
+          border: none;
+          border-radius: 5px;
+      }
+  </style>
     
     <style>
   .labelstyle {
@@ -55,10 +84,10 @@
   <body>
 
     <div id="head" class="col-md-12">
-        <h3 class="text-center" ><span style="color: maroon;padding: inherit;font-size: 24pt;
+        <h3 class="text-center" ><span style="color: rgb(255, 255, 255);padding: inherit;font-size: 24pt;
         font-weight: 900;text-align: center;">Asbestos Prevalence Across Kenyan Counties </h3>
 
-        <p>
+
 
     <div id="map"></div>
 
@@ -80,10 +109,8 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet.ajax.min.js"></script>
-        <!-- <script src="data/Counties2.json"></script> -->
-        <script src="js/Leaflet.SLD-master/leaflet.sld.js"></script>
-        <link rel="stylesheet" href="css/leaflet.legend.css" />
         <script src= "js/leaflet.legend.js"></script> 
+        <script src="js/leaflet.sld.js"></script>
      
 <script>
   
@@ -139,12 +166,12 @@
                 <td>' + (feature.properties['COUNTY'] !== null ? Autolinker.link(feature.properties['COUNTY'].toLocaleString()) : '') + '</td>\
             </tr>\
             <tr>\
-                <th scope="row">AREA</th>\
-                <td>' + (feature.properties['AREA(Km2)'] !== null ? Autolinker.link(feature.properties['AREA'].toLocaleString()) : '') + '</td>\
+                <th scope="row">AREA(Km<sup>2</sup>)</th>\
+                <td>' + (feature.properties['AREA_Km2'] !== null ? Autolinker.link(feature.properties['AREA_Km2'].toLocaleString()) : '') + '</td>\
             </tr>\
             <tr>\
-                <th scope="row">Asbestos</th>\
-                <td>' + (feature.properties['Asbestos'] !== null ? Autolinker.link(feature.properties['Asbestos'].toLocaleString()) : '') + '</td>\
+                <th scope="row">Asbestos Roofing &nbsp;</th>\
+                <td>' + (feature.properties['Asbestos'] !== null ? Autolinker.link(feature.properties['Asbestos'].toLocaleString()) : '') + '(HHs)' +'</td>\
             </tr>\
         </table>';
        
@@ -156,7 +183,6 @@
          const mapDiv = document.createElement('div');
          mapDiv.classList.add('map');
          document.body.appendChild(mapDiv)
-         
          const dataJson = fetch(`${path}data.geojson`);
          const dataSld = fetch(`${path}data.sld`);
          Promise.all([dataJson, dataSld]).then(([jsonResponse, sldResponse]) => {
@@ -169,59 +195,56 @@
                      pointToLayer: SLDStyler.getPointToLayerFunction()
                   }).addTo(map);
                   map.fitBounds(geojsonLayer.getBounds());
-               })
+               });
          })
-      });
-  
+        })  
+    
+
   const legend = L.control.Legend({
             position: "topright",
             collapsed: false,
-            transparent: true,
-            title:'#Asbestos Roofs',
+            title:'#HHs with Asbestos Roofs',
             symbolWidth: 24,
-            opacity: 1,
+            Padding: 5,
+            labelsize: 12,
+            opacity: 0.5,
             column: 1,
+            
             legends: [{
-                label: "364-1000",
+                label: "364-1113 Households",
                 type: "rectangle",
                 color: "#4a4a4a",
-                fillColor: "#66a71e",
+                fillColor: "#1a9641",
                 weight: 2,
             }, {
-                label: "1000-3000",
+                label: "1113-2370 Households",
                 type: "rectangle",
                 color: "#4a4a4a",
-                fillColor: "#b4ba2a",
+                fillColor: "#a6d96a",
                 weight: 2
             }, {
-                label: "3000-8000",
+                label: "2370-4871 Households",
                 type: "rectangle",
                 color: "#4a4a4a",
-                fillColor: "#d8cb39",
+                fillColor: "#ffffc0",
                 weight: 2
             }, {
-                label: "8000-15000",
+                label: "4871-14437 Households",
                 type: "rectangle",
                 color: "#4a4a4a",
-                fillColor: "#c34a6e",
+                fillColor: "#fdae61",
                 weight: 2
             },{
-                label: "37604",
+                label: "37,604 Households",
                 type: "rectangle",
                 color: "#4a4a4a",
-                fillColor: "#88282f",
+                fillColor: "#d7191c",
                 weight: 2
             }]
         })
             .addTo(map);
-  
- //insert scale      
-  L.control.scale({
-            metric:true,
-            imperial:false,
-            position:'topleft'
-        }).addTo (map);
-  
+ 
+                
   //endelevu watermark
  L.Control.Watermark=L.Control.extend({
             onAdd: function(map){
@@ -242,7 +265,7 @@
             }).addTo(map);  
     
      var osmGeocoder = new L.Control.Geocoder({
-            collapsed: true,
+      collapsed: true,
             position: 'topleft',
             target: '',
             text: 'Search',
@@ -252,8 +275,56 @@
         .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search';
+
+         
+ //insert scale      
+ ctlScale = L.control.scale({position:'topleft', metric:true,imperical:false, maxWidth:100}).addTo(map);
+           
   
-  
+        var baseMaps = {};
+         let legend2 = L.control({position: "bottomleft"});
+
+        legend2.onAdd = function() {
+let div = L.DomUtil.create("div", "legend");
+    div.innerHTML =
+    '<button class="button" id="button">X</button>'+
+    '<div class="disp" id="disp">'+
+'<p><b>Households(HHs) with Asbestos Roofs</b></p><hr>' +
+'<p>This map shows the level of asbestos roofing ' +
+'prevalence per county, in Kenya.</p>' +
+'The prevalence is represented as number of ' +
+'Households with Asbestos roofs in each County. </p>' +
+'The following details are included in popUp:<br>' +
+'<p><ul>' +
+'<li>Name of County</li>' +
+'<li>Area of the county in square Kilometers, and</li>' +
+'<li>Number of households<b>(HHs)</b> using Abestos roofs</li>' +
+'</ul></p>' +
+'Click on/hover over within the counties boundaries</li> ' +
+'to view details.<hr>' +
+'</div>'+
+'<div class="open">'+
+'<button class="open-btn">View description</button>'+
+'</div>'
+;
+return div;
+};
+legend2.addTo(map);
+
     </script>
+    <script>
+      $(document).ready(function(){
+          $(".button").click( function(){
+              $(".disp").css("display", "none");
+              $(".button").css("display", "none");
+              $(".open").css("display", "block");
+          });
+          $(".open-btn").click( function(){
+              $(".disp").css("display", "block");
+              $(".button").css("display", "block");
+              $(".open").css("display", "none");
+          })                               
+      })
+  </script>
   </body>
 </html>
