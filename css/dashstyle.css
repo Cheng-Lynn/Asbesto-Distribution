@@ -1,9 +1,9 @@
- #mapdiv {
-                height:82vh;
+#mapdiv {
+    height: calc(100vh - 61px);
             }
 
             .col-xs-12, .col-xs-6, .col-xs-4 {
-                padding:3px;
+                padding:0px;
             }
 
             #divProject {
@@ -42,6 +42,7 @@
             border-radius: 5px;
 
             }
+            
             .legend i {
             width: 18px;
             height: 18px;
@@ -49,6 +50,7 @@
             margin-right: 8px;
             opacity: 0.7;
             }
+
             div.legend.leaflet-control br {
             clear: both;
             }
